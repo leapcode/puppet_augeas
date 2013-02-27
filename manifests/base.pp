@@ -1,8 +1,6 @@
 class augeas::base {
-  $lens_dir = '/usr/share/augeas/lenses'
-
   # ensure no file not managed by puppet ends up in there.
-  file { $lens_dir:
+  file { $augeas::lens_dir:
     ensure       => directory,
     purge        => true,
     force        => true,
@@ -13,7 +11,7 @@ class augeas::base {
     group        => 'root',
   }
 
-  file { "${lens_dir}/dist":
+  file { "${augeas::lens_dir}/dist":
     ensure => directory,
     purge  => false,
     mode   => '0644',
@@ -21,7 +19,7 @@ class augeas::base {
     group  => 'root',
   }
 
-  file { "${lens_dir}/tests":
+  file { "${augeas::lens_dir}/tests":
     ensure  => directory,
     purge   => true,
     force   => true,
