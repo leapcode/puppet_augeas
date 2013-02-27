@@ -8,9 +8,9 @@
 
 This module does 3 things:
  
- o lets you force the augeas version by defining $augeas_version, otherwise puppet will
+ o lets you force the augeas version by defining $version, otherwise puppet will
    only ensure the packages are present.
- o lets you force the ruby library version by defining $augeas_ruby_version, otherwise puppet will
+ o lets you force the ruby library version by defining $rubylib_version, otherwise puppet will
    only ensure the libagueas-ruby version will be installed according to internal critera
  o lets you deploy an augeas lens and any associated test files, running unit tests and not installing if they fail:
 

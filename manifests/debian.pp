@@ -2,7 +2,7 @@ class augeas::debian inherits augeas::base {
 
   package {
     ['augeas-lenses', 'libaugeas0', 'augeas-tools']:
-      ensure => $augeas::base::version,
+      ensure => $augeas::version,
       before => File['/usr/share/augeas/lenses'],
   }
 
@@ -12,7 +12,7 @@ class augeas::debian inherits augeas::base {
   }
 
   package {$augeas_ruby:
-    ensure => $augeas::base::rubylib_version,
+    ensure => $augeas::rubylib_version,
   }
 
 }
