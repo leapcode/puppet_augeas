@@ -1,3 +1,4 @@
+# manage things for redhat based things
 class augeas::redhat inherits augeas::base {
 
   package {

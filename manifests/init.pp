@@ -1,3 +1,4 @@
+# Basic class to manage augeas
 class augeas(
   $version          = 'installed',
   $rubylib_version  = 'installed',

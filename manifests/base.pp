@@ -1,3 +1,4 @@
+# basic things to manage augeas
 class augeas::base {
   # ensure no file not managed by puppet ends up in there.
   file { $augeas::lens_dir:

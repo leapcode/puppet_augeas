@@ -1,3 +1,4 @@
+# manage debian specific things
 class augeas::debian inherits augeas::base {
 
   package {
