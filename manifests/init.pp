@@ -1,7 +1,7 @@
 # Basic class to manage augeas
 class augeas(
   $version          = 'installed',
-  $rubylib_version  = 'installed',
+  $rubylib_version  = 'installed'
 ) {
   $lens_dir = '/usr/share/augeas/lenses'
 
