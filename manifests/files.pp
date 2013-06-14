@@ -1,7 +1,12 @@
-# basic things to manage augeas
-class augeas::base {
+# Class: augeas::files
+#
+# Sets up directories and files for Augeas
+#
+class augeas::files {
+  $lens_dir = $augeas::lens_dir
+
   # ensure no file not managed by puppet ends up in there.
-  file { $augeas::lens_dir:
+  file { $lens_dir:
     ensure       => directory,
     purge        => true,
     force        => true,
@@ -12,7 +17,7 @@ class augeas::base {
     group        => 'root',
   }
 
-  file { "${augeas::lens_dir}/dist":
+  file { "${lens_dir}/dist":
     ensure => directory,
     purge  => false,
     mode   => '0644',
@@ -20,7 +25,7 @@ class augeas::base {
     group  => 'root',
   }
 
-  file { "${augeas::lens_dir}/tests":
+  file { "${lens_dir}/tests":
     ensure  => directory,
     purge   => true,
     force   => true,
