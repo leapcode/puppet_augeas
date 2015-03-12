@@ -1,20 +1,14 @@
-class augeas::base {
-  $lens_dir = '/usr/share/augeas/lenses'
-
-  $version = $augeas_version ? {
-    ''      => 'present',
-    default => $augeas_version
-  }
-
-  $rubylib_version = $augeas_ruby_version ? {
-    ''      => 'present',
-    default => $augeas_ruby_version
-  }
+# Class: augeas::files
+#
+# Sets up directories and files for Augeas
+#
+class augeas::files {
+  $lens_dir = $augeas::lens_dir
 
   # ensure no file not managed by puppet ends up in there.
   file { $lens_dir:
     ensure       => directory,
-    purge        => true,
+    purge        => $::augeas::purge,
     force        => true,
     recurse      => true,
     recurselimit => 1,
@@ -32,11 +26,11 @@ class augeas::base {
   }
 
   file { "${lens_dir}/tests":
-    ensure  => directory,
-    purge   => true,
-    force   => true,
-    mode    => '0644',
-    owner   => 'root',
-    group   => 'root',
+    ensure => directory,
+    purge  => $::augeas::purge,
+    force  => true,
+    mode   => '0644',
+    owner  => 'root',
+    group  => 'root',
   }
 }
