@@ -1,7 +1,10 @@
 # Augeas Puppet module
 
-[![Puppet Forge](http://img.shields.io/puppetforge/v/camptocamp/augeas.svg)](https://forge.puppetlabs.com/camptocamp/augeas)
-[![Build Status](https://travis-ci.org/camptocamp/puppet-augeas.png?branch=master)](https://travis-ci.org/camptocamp/puppet-augeas)
+[![Puppet Forge Version](http://img.shields.io/puppetforge/v/camptocamp/augeas.svg)](https://forge.puppetlabs.com/camptocamp/augeas)
+[![Puppet Forge Downloads](http://img.shields.io/puppetforge/dt/camptocamp/augeas.svg)](https://forge.puppetlabs.com/camptocamp/augeas)
+[![Build Status](https://img.shields.io/travis/camptocamp/puppet-augeas/master.svg)](https://travis-ci.org/camptocamp/puppet-augeas)
+[![Gemnasium](https://img.shields.io/gemnasium/camptocamp/puppet-augeas.svg)](https://gemnasium.com/camptocamp/puppet-augeas)
+[![By Camptocamp](https://img.shields.io/badge/by-camptocamp-fb7047.svg)](http://www.camptocamp.com)
 
 **Install and configure Augeas.**
 
@@ -36,18 +39,22 @@ The `augeas::lens` definition allows you to deploy an Augeas lens and any associ
 Parameters:
 
 - *ensure*: present/absent
-- *lens_source*: the source for the lens
-- *test_source*: optionally, the source for the test file.
+- *lens_content*: the content of the lens
+- *lens_source*: deprecated, the source for the lens
+- *test_content*: optionally, the content of the test file
+- *test_source*: deprecated, the source for the test file.
 - *stock_since*: optionally, indicate in which version of Augeas
   the lens became stock, so it will not be deployed above that version.
 
 Example usage:
 
-     augeas::lens { 'networkmanager':
-      lens_source => 'puppet:///modules/networkmanager/lenses/networkmanager.aug',
-      test_source => 'puppet:///modules/networkmanager/lenses/test_networkmanager.aug',
-      stock_since => '1.0.0',
-     }
+```puppet
+augeas::lens { 'networkmanager':
+  lens_content => file('networkmanager/lenses/networkmanager.aug'),
+  test_content => file('networkmanager/lenses/test_networkmanager.aug'),
+  stock_since  => '1.0.0',
+}
+```
 
 ### Functions
 

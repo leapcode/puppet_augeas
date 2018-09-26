@@ -11,7 +11,7 @@ RSpec.configure do |c|
     @old_env = {}
     ENV.each_key {|k| @old_env[k] = ENV[k]}
 
-    Puppet.settings[:strict_variables]=true if Gem::Version.new(Puppet::PUPPETVERSION) >= Gem::Version.new('3.5')
+    c.strict_variables = Gem::Version.new(Puppet.version) >= Gem::Version.new('3.5')
     Puppet.features.stubs(:root?).returns(true)
   end
 
@@ -35,7 +35,7 @@ Puppet[:modulepath] = File.join(dir, 'fixtures', 'modules')
 # ticket https://tickets.puppetlabs.com/browse/MODULES-823
 #
 ver = Gem::Version.new(Puppet.version.split('-').first)
-if Gem::Requirement.new("~> 2.7.20") =~ ver || Gem::Requirement.new("~> 3.0.0") =~ ver || Gem::Requirement.new("~> 3.5") =~ ver
+if Gem::Requirement.new("~> 2.7.20") =~ ver || Gem::Requirement.new("~> 3.0.0") =~ ver || Gem::Requirement.new("~> 3.5") =~ ver || Gem::Requirement.new("~> 4.0")
   puts "augeasproviders: setting Puppet[:libdir] to work around broken type autoloading"
   # libdir is only a single dir, so it can only workaround loading of one external module
   Puppet[:libdir] = "#{Puppet[:modulepath]}/augeasproviders_core/lib"
