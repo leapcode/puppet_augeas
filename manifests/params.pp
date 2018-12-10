@@ -41,7 +41,7 @@ class augeas::params {
     default:  { fail("Unsupported OS family: ${::osfamily}") }
   }
 
-  if versioncmp($::puppetversion, '4.0.0') >= 0 {
+  if versioncmp($::puppetversion, '4.0.0') >= 0 and $::osfamily != 'Debian' {
     $lens_dir = '/opt/puppetlabs/puppet/share/augeas/lenses'
   } elsif (defined('$is_pe') and str2bool("${::is_pe}")) { # lint:ignore:only_variable_string
     # puppet enterpise has a different lens location
